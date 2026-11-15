@@ -1,0 +1,16 @@
+# Environments & caches
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# Generated data (the raw imdb_reviews.csv IS committed)
+data/imdb_test_gold.csv
+data/imdb_weak_labeled.csv
+data/imdb_augmented.csv
+
+# Generated model outputs
+outputs/*.pkl
+outputs/*.csv
+outputs/figures/

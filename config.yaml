@@ -1,0 +1,38 @@
+# ============================================================
+# Lab 4 — IMDb Review Data Labeling: configuration
+# Author: Kshitij Maurya
+# All paths are relative to the Lab4 folder.
+# ============================================================
+
+data:
+  raw: "data/imdb_reviews.csv"              # 8,000 IMDb reviews (review, sentiment)
+  test_gold: "data/imdb_test_gold.csv"      # held-out reviews with their true labels
+  weak_labeled: "data/imdb_weak_labeled.csv"
+  augmented: "data/imdb_augmented.csv"
+
+split:
+  test_size: 0.2            # share of reviews kept aside (with gold labels) for final testing
+  random_state: 42
+
+labeling:
+  positive: 1
+  negative: 0
+  abstain: -1
+  rating_high: 7            # "x/10" >= 7 -> positive
+  rating_low: 4             # "x/10" <= 4 -> negative
+  positive_words: ["excellent", "masterpiece", "brilliant", "superb", "wonderful", "loved it", "beautifully", "outstanding"]
+  negative_words: ["worst", "waste of", "awful", "terrible", "horrible", "boring", "garbage", "pathetic"]
+  recommend_words: ["highly recommend", "must see", "must-see", "well worth"]
+  avoid_words: ["don't waste", "avoid this", "stay away", "not worth", "don't bother"]
+
+augmentation:
+  random_seed: 42
+  protected_words: ["not", "no", "never", "nothing", "don't", "didn't", "isn't", "wasn't"]
+
+model:
+  random_state: 42
+  cv_folds: 5
+  tfidf_max_features: 30000
+  model_path: "outputs/best_model.pkl"
+  predictions_path: "outputs/predictions_test.csv"
+  figures_dir: "outputs/figures"
